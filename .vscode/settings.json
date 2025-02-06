@@ -1,0 +1,14 @@
+{
+    "files.readonlyInclude": {
+        "{**/.c4z/.extsrcs/*.PROTSYM.cbl,**/.c4z/.extsrcs/*.PROTSYM.listing}": true
+    },
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "test",
+            "database": "${workspaceFolder:my-django-rest-project}/db.sqlite3"
+        }
+    ]
+}

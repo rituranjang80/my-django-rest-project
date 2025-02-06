@@ -1,0 +1,17 @@
+{
+  allUsers {
+    id
+    username
+    email
+    roles {
+      name
+    }
+    groups {
+      name
+    }
+    userPermissions {
+      name
+      codename
+    }
+  }
+}
