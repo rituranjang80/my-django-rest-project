@@ -1,17 +1,15 @@
 {
-  allUsers {
-    id
-    username
-    email
-    roles {
-      name
-    }
-    groups {
-      name
-    }
-    userPermissions {
-      name
-      codename
-    }
-  }
+  "query": "{  allGroups { id name permissions {id name} }}"
 }
+
+{
+  "query": "{  allUsers  { id username email roles { name } groups { name }}}"
+}
+
+{
+  "query": "{ allAbc { id name description createdAt } }"
+}
+
+
+allUsers { id username email roles { name } groups { name } userPermissions { name codename } }
+mutation { createAbc(name: \"New ABC\", description: \"Test description\") { abc { id name description createdAt } } }

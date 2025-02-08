@@ -12,8 +12,10 @@ python -m pip install --upgrade pip
 REM Install required packages
 pip install -r requirements.txt
 
-REM Apply migrations
+python manage.py makemigrations
 python manage.py migrate
+REM Apply migrations
+REM python manage.py migrate
 
 REM Run the Django development server
 python manage.py runserver

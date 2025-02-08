@@ -31,12 +31,3 @@ class User(AbstractUser):
     roles = models.ManyToManyField(Role)
     groups = models.ManyToManyField(Group, related_name='rbac_user_set', blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='rbac_user_set', blank=True)
-
-
-class ABC(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name

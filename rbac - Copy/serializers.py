@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Role, Menu, ABC
+from .models import User, Role, Menu
 from django.contrib.auth.models import Permission, Group
 
 class RoleSerializer(serializers.ModelSerializer):
@@ -23,11 +23,6 @@ class GroupSerializer(serializers.ModelSerializer):
         model = Group
         fields = '__all__'
 
-
-class ABCSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ABC
-        fields = '__all__'
 class UserSerializer(serializers.ModelSerializer):
     roles = RoleSerializer(many=True, read_only=True)
     groups = GroupSerializer(many=True, read_only=True)
