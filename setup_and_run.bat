@@ -19,3 +19,5 @@ REM python manage.py migrate
 
 REM Run the Django development server
 python manage.py runserver
+
+REM python manage.py startapp common

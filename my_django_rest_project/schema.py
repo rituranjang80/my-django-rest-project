@@ -1,8 +1,9 @@
 import graphene
 from graphene_django import DjangoObjectType
 from rbac.models import User, Role, Menu,ABC
+#from common.schema import Query as CommonQuery
 from django.contrib.auth.models import Group, Permission
-
+from common.schema import Query as CommonQuery, Mutation as CommonMutation
 # --- Generic Factory (Supports Open/Closed and DRY) ---
 def create_django_object_type(model, fields='__all__'):
     """Generic factory to create DjangoObjectType classes dynamically."""
@@ -68,6 +69,7 @@ class Query(
     PermissionQuery,
     GroupQuery,
     ABCQuery,
+    CommonQuery,
     graphene.ObjectType,
 ):
     """Aggregates all query classes into a single Query schema."""
@@ -99,10 +101,12 @@ class CreateABC(graphene.Mutation):
 
 # Additional mutations can be added as separate classes here
 
-class Mutation(graphene.ObjectType):
+class Mutation(CommonMutation,graphene.ObjectType):
     """Aggregates all mutations."""
-    create_user = CreateUser.Field()
-    create_abc = CreateABC.Field()  # New Mutation
+    # create_user = CreateUser.Field()
+    # create_abc = CreateABC.Field()  # New Mutation
+    
+    pass
 
 # --- Schema Configuration ---
 schema = graphene.Schema(query=Query, mutation=Mutation)

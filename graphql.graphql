@@ -13,3 +13,16 @@
 
 allUsers { id username email roles { name } groups { name } userPermissions { name codename } }
 mutation { createAbc(name: \"New ABC\", description: \"Test description\") { abc { id name description createdAt } } }
+
+{
+  "query": "{ allCommonModels { id name description } }"
+}
+
+{
+  "query": "mutation { createCitymodel(input: { name: \"New Item\", description: \"Test Description\" }) { result { id name description } errors } }"
+}
+
+
+{
+  "query": "{ allCitymodels { id name description } }"
+}

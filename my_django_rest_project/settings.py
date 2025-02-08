@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'guardian',
     'apps',
     'rbac',
-    'graphene_django'
+    'graphene_django',
+    'common'
     # Add your apps here
 ]
 
