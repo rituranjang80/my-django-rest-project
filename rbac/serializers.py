@@ -26,7 +26,7 @@ class GroupSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     roles = RoleSerializer(many=True, read_only=True)
     groups = GroupSerializer(many=True, read_only=True)
-    #user_permissions = PermissionSerializer(many=True, read_only=True)
+    user_permissions = PermissionSerializer(many=True, read_only=True)
 
     class Meta:
         model = User

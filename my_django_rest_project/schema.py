@@ -19,9 +19,14 @@ class PermissionType(DjangoObjectType):
         fields = ['id', 'name', 'codename', 'content_type']
 
 class GroupType(DjangoObjectType):
+    permissions = graphene.List(PermissionType)
+
     class Meta:
         model = Group
         fields = '__all__'
+    def resolve_permissions(self, info):
+        return self.permissions.all()
+        #return [permission.id for permission in self.permissions.all()]
 
 class UserType(DjangoObjectType):
     class Meta:
@@ -35,19 +40,34 @@ class Query(graphene.ObjectType):
     all_permissions = graphene.List(PermissionType)
     all_groups = graphene.List(GroupType)
 
-    def resolve_all_users(root, info):
+    def resolve_all_users(self, info, **kwargs):
         return User.objects.all()
 
-    def resolve_all_roles(root, info):
+    def resolve_all_roles(self, info, **kwargs):
         return Role.objects.all()
 
     def resolve_all_menus(root, info):
         return Menu.objects.all()
 
-    def resolve_all_permissions(root, info):
+    def resolve_all_permissions(self, info, **kwargs):
         return Permission.objects.all()
 
-    def resolve_all_groups(root, info):
+    def resolve_all_groups(self, info, **kwargs):
         return Group.objects.all()
+    
+class CreateUser(graphene.Mutation):
+    class Arguments:
+        username = graphene.String()
+        email = graphene.String()
 
-schema = graphene.Schema(query=Query)
+    user = graphene.Field(UserType)
+
+    def mutate(self, info, username, email):
+        user = User(username=username, email=email)
+        user.save()
+        return CreateUser(user=user)
+
+class Mutation(graphene.ObjectType):
+    create_user = CreateUser.Field()
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
