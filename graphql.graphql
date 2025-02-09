@@ -30,3 +30,13 @@ mutation { createAbc(name: \"New ABC\", description: \"Test description\") { abc
 {
   "query": "{ allPincodemodels { id name description } }"
 }
+
+
+{
+  "query": "mutation { createUser(username: \"Ritu999\", email:\"rr@ee.com\" ) { user { id username  } } }"
+}
+
+
+{
+  "query": "mutation { createUser( username: \"Ritux\", email: \"rr@ee.com\", isActive: true, roles: [10, 11], groups: [3, 4, 5], userPermissions: [57, 58, 59] ) { user { id username email } } }"
+}

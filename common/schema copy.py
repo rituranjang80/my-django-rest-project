@@ -212,44 +212,12 @@ class SchemaBuilder:
         setattr(Query, field_name, graphene.List(object_type))
         setattr(Query, f'resolve_{field_name}', resolver)
 
-
-
-# # ------------------------ Schema Setup --------------------------------
-# class Query(graphene.ObjectType):
-#     pass
+# ------------------------ Schema Setup --------------------------------
+class Query(graphene.ObjectType):
+    pass
 
 class Mutation(graphene.ObjectType):
     pass
-
-from graphene_django import DjangoObjectType
-from .models import CityModel, PincodeModel
-
-class CityModelType(DjangoObjectType):
-    class Meta:
-        model = CityModel
-        fields = ("id", "name", "description")
-
-class PincodeModelType(DjangoObjectType):
-    city = graphene.Field(CityModelType)  # Explicit field definition
-    
-    class Meta:
-        model = PincodeModel
-        fields = ("id", "code", "description")
-        interfaces = (graphene.relay.Node,)
-
-    def resolve_city(self, info):
-        # Explicit resolver for foreign key relationship
-        return self.city
-
-
-class Query(graphene.ObjectType):
-    all_pincodemodels = graphene.List(PincodeModelType)    
-    def resolve_all_pincodemodels(self, info):
-        # Use select_related to optimize database queries
-        return PincodeModel.objects.select_related('city').all()
-    #pass
-
-
 
 # Initialize schema
 schema_builder = SchemaBuilder()
