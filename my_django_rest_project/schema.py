@@ -4,16 +4,16 @@ from rbac.models import User, Role, Menu,ABC
 #from common.schema import Query as CommonQuery
 from django.contrib.auth.models import Group, Permission
 from common.schema import Query as CommonQuery, Mutation as CommonMutation
-from rbac.schema import UserQuery, RoleQuery, MenuQuery, PermissionQuery, GroupQuery, ABCQuery,CreateUser,CreateABC
+from rbac.schema import UserQuery,CreateUser#, RoleQuery, MenuQuery, PermissionQuery, GroupQuery, ABCQuery,CreateUser,CreateABC
 
 
 class Query(    
     UserQuery,
-    RoleQuery,
-    MenuQuery,
-    PermissionQuery,
-    GroupQuery,
-    ABCQuery,
+    # RoleQuery,
+    # MenuQuery,
+    # PermissionQuery,
+    # GroupQuery,
+    # ABCQuery,
     CommonQuery,
     graphene.ObjectType,
 ):
@@ -25,7 +25,6 @@ class Query(
 class Mutation(CommonMutation,graphene.ObjectType):
     """Aggregates all mutations."""
     create_user = CreateUser.Field()
-    create_abc = CreateABC.Field()  # New Mutation
     
     #pass
 

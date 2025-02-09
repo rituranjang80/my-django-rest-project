@@ -25,11 +25,6 @@ class UserType(DjangoObjectType):
     class Meta:
         model = User
         fields = "__all__"
-    
-    user_permissions = graphene.List(PermissionType)
-
-    def resolve_user_permissions(self, info):
-        return self.user_permissions.all()
 class UserQuery(graphene.ObjectType):
     """Handles only user-related queries."""
     all_users = graphene.List(UserType)

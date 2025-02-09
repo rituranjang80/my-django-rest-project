@@ -40,3 +40,17 @@ mutation { createAbc(name: \"New ABC\", description: \"Test description\") { abc
 {
   "query": "mutation { createUser( username: \"Ritux\", email: \"rr@ee.com\", isActive: true, roles: [10, 11], groups: [3, 4, 5], userPermissions: [57, 58, 59] ) { user { id username email } } }"
 }
+
+{
+  "query": "mutation { createUser(input: { username: \"yaa7r55rrr\",email: \"rr7771u8uu11@ee.com\", isActive: true,groups: [3, 4, 5], roles:[10,11], userPermissions: [57, 58, 59] }) { user { id username email  } groups {id} } }"
+}
+
+
+
+
+{
+  "query": "mutation { createUser(input: { username: \"yaa7r55rrr\",email: \"rr7771u8uu11@ee.com\", isActive: true,groups: [3, 4, 5], roles:[10,11], userPermissions: [57, 58, 59] }) { user { id username email   groups {id}} } }"
+}
+
+{
+  "query": "query { allUsers { id username email  groups { name }}}"}
