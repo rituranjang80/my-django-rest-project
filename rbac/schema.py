@@ -42,6 +42,12 @@ class CreateUser(graphene.Mutation):
     user = graphene.Field(UserType)
 
     def mutate(self, info, input):
+        # Ensure all provided group IDs exist
+        if input.groups:
+            groups = Group.objects.filter(id__in=input.groups)
+            if groups.count() != len(input.groups):
+                raise Exception("One or more group IDs are invalid.")
+
         # Create user first (without Many-to-Many fields)
         user = User.objects.create_user(
             username=input.username,
@@ -51,7 +57,7 @@ class CreateUser(graphene.Mutation):
 
         # Assign Many-to-Many relationships
         if input.groups:
-            user.groups.set(Group.objects.filter(id__in=input.groups))       
+            user.groups.set(groups)
         
         return CreateUser(user=user)
 

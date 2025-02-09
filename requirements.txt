@@ -4,3 +4,5 @@ djangorestframework==3.14.0
 drf-yasg==1.21.4
 django-guardian==2.4.0
 graphene-django
+pytest
+my_django_rest_project
