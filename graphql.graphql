@@ -4,5 +4,10 @@
 {
   "query": "mutation { createUser(input: { username: \"\", email: \"\", isActive: true, groups: [3, 4, 5], userPermissions: [1] }) { user { id username email roles {id} userPermissions {id} groups { id }  } } }"
 }
+
+
+{
+  "query": "mutation { createUser(input: { username: \"d1a\", email: \"d@1123.v\", isActive: true, groups: [3, 4, 5]}) { user { id username email  groups { id }  } } }"
+}
 {
   "query": "query { allUsers { id username email  groups { name }}}"}

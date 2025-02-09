@@ -1,7 +1,8 @@
 import graphene
 from graphene_django import DjangoObjectType
 from rbac.models import User
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, Permission
+
 
 def create_django_object_type(model, fields='__all__'):
     
@@ -51,8 +52,15 @@ class CreateUser(graphene.Mutation):
 
         # Assign Many-to-Many relationships
         if input.groups:
-            user.groups.set(Group.objects.filter(id__in=input.groups))       
+            user.groups.set(Group.objects.filter(id__in=input.groups))
         
+        if input.roles:
+            user.groups.add(*input.roles)
+
+
+        if input.user_permissions:
+            user.user_permissions.set(Permission.objects.filter(id__in=input.user_permissions))
+
         return CreateUser(user=user)
 
 class Mutation(graphene.ObjectType):
