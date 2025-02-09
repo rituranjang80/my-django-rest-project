@@ -26,3 +26,7 @@ mutation { createAbc(name: \"New ABC\", description: \"Test description\") { abc
 {
   "query": "{ allCitymodels { id name description } }"
 }
+
+{
+  "query": "{ allPincodemodels { id name description } }"
+}

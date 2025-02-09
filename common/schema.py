@@ -1,7 +1,7 @@
 import graphene
 from graphene_django import DjangoObjectType
 from django.db import models
-from .models import CommonModel,CityModel
+from .models import CommonModel,CityModel,PincodeModel
 
 # ------------------------ Type Registry -------------------------------
 class TypeRegistry:
@@ -223,5 +223,6 @@ class Mutation(graphene.ObjectType):
 schema_builder = SchemaBuilder()
 schema_builder.register_model(CommonModel)
 schema_builder.register_model(CityModel)
+schema_builder.register_model(PincodeModel)
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
