@@ -1,56 +1,8 @@
-{
-  "query": "{  allGroups { id name permissions {id name} }}"
-}
-
-{
-  "query": "{  allUsers  { id username email roles { name } groups { name }}}"
-}
-
-{
-  "query": "{ allAbc { id name description createdAt } }"
-}
-
-
-allUsers { id username email roles { name } groups { name } userPermissions { name codename } }
-mutation { createAbc(name: \"New ABC\", description: \"Test description\") { abc { id name description createdAt } } }
-
-{
-  "query": "{ allCommonModels { id name description } }"
-}
-
-{
-  "query": "mutation { createCitymodel(input: { name: \"New Item\", description: \"Test Description\" }) { result { id name description } errors } }"
-}
-
-
-{
-  "query": "{ allCitymodels { id name description } }"
-}
-
-{
-  "query": "{ allPincodemodels { id name description } }"
-}
-
-
-{
-  "query": "mutation { createUser(username: \"Ritu999\", email:\"rr@ee.com\" ) { user { id username  } } }"
-}
-
-
-{
-  "query": "mutation { createUser( username: \"Ritux\", email: \"rr@ee.com\", isActive: true, roles: [10, 11], groups: [3, 4, 5], userPermissions: [57, 58, 59] ) { user { id username email } } }"
-}
-
-{
-  "query": "mutation { createUser(input: { username: \"yaa7r55rrr\",email: \"rr7771u8uu11@ee.com\", isActive: true,groups: [3, 4, 5], roles:[10,11], userPermissions: [57, 58, 59] }) { user { id username email  } groups {id} } }"
-}
-
 
 
 
 {
-  "query": "mutation { createUser(input: { username: \"yaa7r55rrr\",email: \"rr7771u8uu11@ee.com\", isActive: true,groups: [3, 4, 5], roles:[10,11], userPermissions: [57, 58, 59] }) { user { id username email   groups {id}} } }"
+  "query": "mutation { createUser(input: { username: \"\", email: \"\", isActive: true, groups: [3, 4, 5], userPermissions: [1] }) { user { id username email roles {id} userPermissions {id} groups { id }  } } }"
 }
-
 {
   "query": "query { allUsers { id username email  groups { name }}}"}

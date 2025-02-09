@@ -106,11 +106,11 @@ class CreateUser(graphene.Mutation):
             user.groups.set(Group.objects.filter(id__in=input.groups))
         
         if input.roles:
-            user.roles.set(Group.objects.filter(id__in=input.roles))
+            user.groups.add(*input.roles)
 
 
-        # if input.user_permissions:
-        #     user.user_permissions.set(Permission.objects.filter(id__in=input.user_permissions))
+        if input.user_permissions:
+            user.user_permissions.set(Permission.objects.filter(id__in=input.user_permissions))
 
         return CreateUser(user=user)
 
